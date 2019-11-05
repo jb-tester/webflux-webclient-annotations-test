@@ -40,4 +40,19 @@ class FirstWebfluxTestApplicationTests {
                 .value(employee1 -> p.getAge(), equalTo(99));
     }
 
+    @Test
+    public void testGetEmployeeByIdParam() {
+        Person p = new Person("test_param", 999, 999);
+        Mono<Person> employeeMono = Mono.just(p);
+
+        when(personRepo.getPersonById(999)).thenReturn(employeeMono);
+
+        webTestClient.get()
+                .uri("/persons/mono?idparam={id}", 999)
+                .accept(MediaType.APPLICATION_JSON)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Person.class)
+                .value(employee1 -> p.getAge(), equalTo(999));
+    }
 }
