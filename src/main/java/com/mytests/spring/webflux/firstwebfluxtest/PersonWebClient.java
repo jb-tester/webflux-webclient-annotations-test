@@ -15,14 +15,19 @@ public class PersonWebClient {
     WebClient client = WebClient.create("http://localhost:8080");
     public void consume(){
         System.out.println("===== test web client =====");
-        Mono<Person> personById = client.get().uri("/persons/mono/{id}","1").retrieve().bodyToMono(Person.class);
-        personById.subscribe(x -> System.out.println("mono: person by id==1 "+x.getName()));
+        Mono<Person> personById = client.get().uri("/persons/mono/{id}", "1").retrieve().bodyToMono(Person.class);
+        personById.subscribe(x -> System.out.println("mono: person by id==1 " + x.getName()));
         Flux<Person> all = client.get().uri("/persons/flux/").retrieve().bodyToFlux(Person.class);
-        all.subscribe(x -> System.out.println("flux: all: "+x.getName()));
+        all.subscribe(x -> System.out.println("flux: all: " + x.getName()));
         Flux<Person> byName =
-                client.get().uri("/persons/flux/names/{name}","andrey" ).retrieve().bodyToFlux(Person.class);
-        byName.subscribe(x -> System.out.println("flux: persons by name == andrey: "+x.getName()));
+                client.get().uri("/persons/flux/names/{name}", "andrey").retrieve().bodyToFlux(Person.class);
+        byName.subscribe(x -> System.out.println("flux: persons by name == andrey: " + x.getName()));
         Flux<Person> byAge = client.get().uri("/persons/flux/ages/50").retrieve().bodyToFlux(Person.class);
-        byAge.subscribe(x -> System.out.println("flux: persons by age > 50: "+x.getName()));
+        byAge.subscribe(x -> System.out.println("flux: persons by age > 50: " + x.getName()));
+        Mono<Person> paramTestPerson = client.get().uri("persons/mono?idparam=2").retrieve().bodyToMono(Person.class);
+        paramTestPerson.subscribe(x -> System.out.println("req parameters test :" + x.getName()));
     }
+
 }
+/// /user/repos?sort={sortField}&direction={sortDirection}", 
+         
