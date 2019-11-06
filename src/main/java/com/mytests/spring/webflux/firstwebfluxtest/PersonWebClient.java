@@ -26,8 +26,15 @@ public class PersonWebClient {
         byAge.subscribe(x -> System.out.println("flux: persons by age > 50: " + x.getName()));
         Mono<Person> paramTestPerson = client.get().uri("persons/mono?idparam=2").retrieve().bodyToMono(Person.class);
         paramTestPerson.subscribe(x -> System.out.println("req parameters test :" + x.getName()));
-    }
+        Mono<Person> paramTestPerson2 = client.get()
+                .uri(uriBuilder -> uriBuilder.path("/persons/mono/")
+                        .queryParam("idparam", "3").build())
 
+                .retrieve()
+                .bodyToMono(Person.class);
+        paramTestPerson2.subscribe(x -> System.out.println("req parameters test2 :" + x.getName()));
+    }
+    
 }
  
          
