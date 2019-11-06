@@ -27,7 +27,6 @@ public class PersonMonoController {
 
     @GetMapping("persons/mono")
     public Mono<Person> getByIdAsParam(@RequestParam("idparam") String id) {
-
         return personRepo.getPersonById(Integer.parseInt(id));
     }
 }
