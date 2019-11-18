@@ -22,9 +22,18 @@ public class PersonWebClient {
         Flux<Person> byName =
                 client.get().uri("/persons/flux/names/{name}", "andrey").retrieve().bodyToFlux(Person.class);
         byName.subscribe(x -> System.out.println("flux: persons by name == andrey: " + x.getName()));
-        Flux<Person> byAge = client.get().uri("/persons/flux/ages/50").retrieve().bodyToFlux(Person.class);
+        Flux<Person> byAge = client.get().uri("/persons/flux/ages/50")
+                .retrieve().bodyToFlux(Person.class)
+                .filter(person ->
+                        (person.getId()>0) )
+                .map(person -> {
+                    System.out.println("**********************************");
+                    System.out.println(person.getName());
+                    System.out.println("**********************************");
+                    return person;
+                });
         byAge.subscribe(x -> System.out.println("flux: persons by age > 50: " + x.getName()));
-        Mono<Person> paramTestPerson = client.get().uri("persons/mono?idparam=2").retrieve().bodyToMono(Person.class);
+        Mono<Person> paramTestPerson = client.get().uri("/persons/mono?idparam=2").retrieve().bodyToMono(Person.class);
         paramTestPerson.subscribe(x -> System.out.println("req parameters test :" + x.getName()));
         Mono<Person> paramTestPerson2 = client.get()
                 .uri(uriBuilder -> uriBuilder.path("/persons/mono/")
@@ -37,4 +46,3 @@ public class PersonWebClient {
     
 }
  
-         
