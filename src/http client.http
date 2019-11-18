@@ -1,0 +1,16 @@
+######
+ GET http://localhost:8080/persons/flux/
+
+###
+ GET http://localhost:8080/persons/flux/ages/25
+
+###
+ GET http://localhost:8080/persons/flux/names/irina
+
+###
+ GET http://localhost:8080/persons/mono?idparam=2
+
+###
+ GET http://localhost:8080/persons/mono/4
+
+###
