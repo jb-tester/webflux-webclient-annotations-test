@@ -29,4 +29,10 @@ public class PersonMonoController {
     public Mono<Person> getByIdAsParam(@RequestParam("idparam") String id) {
         return personRepo.getPersonById(Integer.parseInt(id));
     }
+
+    @GetMapping("persons/mono_first")
+    public Mono<Person> getFirstPerson() {
+        return personRepo.getFirstPerson();
+    }
+
 }

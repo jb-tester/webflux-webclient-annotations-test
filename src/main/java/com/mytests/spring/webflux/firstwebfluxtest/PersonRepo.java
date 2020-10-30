@@ -21,24 +21,34 @@ public class PersonRepo {
     static {
         personList = new ArrayList<>();
         personList.add(new Person("irina",1, 49));
-        personList.add(new Person("vera",2, 23));
-        personList.add(new Person("andrey",3, 49));
-        personList.add(new Person("lena",4, 49));
-        personList.add(new Person("katya",5, 26));
-        personList.add(new Person("natasha",6, 72));
-        personList.add(new Person("andrey",7, 74));
+        personList.add(new Person("vera", 2, 23));
+        personList.add(new Person("andrey", 3, 49));
+        personList.add(new Person("lena", 4, 49));
+        personList.add(new Person("katya", 5, 26));
+        personList.add(new Person("natasha", 6, 72));
+        personList.add(new Person("andrey", 7, 74));
     }
-    public Flux<Person> getAllPersons(){
+
+    public Flux<Person> getAllPersons() {
         return Flux.fromIterable(personList);
     }
-    public Mono<Person> getPersonById(Integer id){
+
+    public Mono<Person> getFirstPerson() {
+        Person rez = personList.get(0);
+        return Mono.just(rez);
+    }
+
+    public Mono<Person> getPersonById(Integer id) {
         Person rez = new Person("not found", 0, 0);
         for (Person person : personList) {
-            if (person.getId().equals(id)){rez = person;}
+            if (person.getId().equals(id)) {
+                rez = person;
+            }
         }
         return Mono.just(rez);
     }
-    public Flux<Person> getPersonsByName(String name){
+
+    public Flux<Person> getPersonsByName(String name) {
         List<Person> rez = new ArrayList<>();
         for (Person person : personList) {
             if (person.getName().equals(name)){rez.add(person);}
