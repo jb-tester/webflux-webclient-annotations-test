@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-
+// https://youtrack.jetbrains.com/issue/IDEA-234930 - request parameters are not supported
 @Configuration
 public class RouterWithQueryParam {
 
