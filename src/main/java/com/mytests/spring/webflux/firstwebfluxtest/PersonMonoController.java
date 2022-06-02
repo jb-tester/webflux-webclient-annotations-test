@@ -2,10 +2,7 @@ package com.mytests.spring.webflux.firstwebfluxtest;
 
 import com.mytests.spring.webflux.firstwebfluxtest.data.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 /**
@@ -35,4 +32,8 @@ public class PersonMonoController {
         return personRepo.getFirstPerson();
     }
 
+    @PostMapping(path = "/add", produces = "application/json", consumes = "application/json")
+    public Person addPerson(@RequestBody Person person){
+       return personRepo.addPerson(person);
+    }
 }

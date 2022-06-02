@@ -36,8 +36,11 @@ class FirstWebfluxTestApplicationTests {
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Person.class)
-                .value(employee1 -> p.getAge(), equalTo(99));
+                .expectBody().json("{\n" +
+                        "  \"name\": \"test\",\n" +
+                        "  \"id\": 99,\n" +
+                        "  \"age\": 99\n" +
+                        "}");
     }
 
     @Test
@@ -54,5 +57,20 @@ class FirstWebfluxTestApplicationTests {
                 .expectStatus().isOk()
                 .expectBody(Person.class)
                 .value(employee1 -> p.getAge(), equalTo(999));
+    }
+
+    @Test
+    public void testPersonAdding() {
+       webTestClient.post()
+               .uri("/add")
+               .contentType(MediaType.APPLICATION_JSON)
+               .bodyValue("{\n" +
+                       "  \"id\": 100,\n" +
+                       "  \"age\": 26,\n" +
+                       "  \"name\": \"Leva\"\n" +
+                       "}")
+               .exchange()
+               .expectStatus().isOk();
+
     }
 }

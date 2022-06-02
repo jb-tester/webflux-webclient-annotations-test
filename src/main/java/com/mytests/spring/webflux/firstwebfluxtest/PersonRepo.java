@@ -62,4 +62,9 @@ public class PersonRepo {
         }
         return Flux.fromIterable(rez);
     }
+
+    public Person addPerson(Person person){
+        personList.add(person);
+        return person;
+    }
 }

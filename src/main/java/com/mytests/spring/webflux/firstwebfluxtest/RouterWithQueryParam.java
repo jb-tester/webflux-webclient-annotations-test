@@ -23,6 +23,10 @@ public class RouterWithQueryParam {
                 this::process00);
     }
 
+    private <T extends ServerResponse> Mono<ServerResponse> process00(ServerRequest req) {
+        return ServerResponse.ok().body(Mono.just(req.queryParam("my_param0").get()), String.class);
+    }
+
     @Bean
     public RouterFunction<ServerResponse> routeTwoQueryParams(){
 
@@ -30,10 +34,6 @@ public class RouterWithQueryParam {
                                            .and(queryParam("my_param1", t -> true))
                                            .and(queryParam("my_param2", t -> true))),
                 this::process01);
-    }
-
-    private <T extends ServerResponse> Mono<ServerResponse> process00(ServerRequest req) {
-        return ServerResponse.ok().body(Mono.just(req.queryParam("my_param0").get()), String.class);
     }
     private <T extends ServerResponse> Mono<ServerResponse> process01(ServerRequest req) {
         return ServerResponse.ok().body(Mono.just(req.queryParam("my_param1").get().concat(req.queryParam("my_param2").get())), String.class);

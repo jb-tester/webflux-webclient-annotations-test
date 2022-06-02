@@ -14,3 +14,12 @@
  GET http://localhost:8080/persons/mono/4
 
 ###
+
+POST http://localhost:8080/add
+Content-Type: application/json
+
+{
+  "id": 100,
+  "age": 26,
+  "name": "Leva"
+}
