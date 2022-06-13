@@ -11,7 +11,7 @@ public class PersonWebClient2 {
     private final WebClient webClient;
 
     public PersonWebClient2(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8080").build(); // https://youtrack.jetbrains.com/issue/IDEA-254250
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/mywebfluxapp").build(); // https://youtrack.jetbrains.com/issue/IDEA-254250
     }
 
     public Mono<Person> getFirstPersonFromWebClientService() {

@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
  * *******************************
  */
 public class PersonWebClient {
-    WebClient client = WebClient.create("http://localhost:8080");
+    WebClient client = WebClient.create("http://localhost:8080/mywebfluxapp");
     public void consume(){
         System.out.println("===== test web client =====");
         Mono<Person> personById = client.get().uri("/persons/mono/{id}", "1").retrieve().bodyToMono(Person.class);

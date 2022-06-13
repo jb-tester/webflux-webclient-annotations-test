@@ -1,21 +1,21 @@
 ######
- GET http://localhost:8080/persons/flux/
+ GET http://localhost:8080/mywebfluxapp/persons/flux/
 
 ###
- GET http://localhost:8080/persons/flux/ages/25
+ GET http://localhost:8080/mywebfluxapp/persons/flux/ages/25
 
 ###
- GET http://localhost:8080/persons/flux/names/irina
+ GET http://localhost:8080/mywebfluxapp/persons/flux/names/irina
 
 ###
- GET http://localhost:8080/persons/mono?idparam=2
+ GET http://localhost:8080/mywebfluxapp/persons/mono?idparam=2
 
 ###
- GET http://localhost:8080/persons/mono/4
+ GET http://localhost:8080/mywebfluxapp/persons/mono/4
 
 ###
 
-POST http://localhost:8080/add
+POST http://localhost:8080/mywebfluxapp/add
 Content-Type: application/json
 
 {
