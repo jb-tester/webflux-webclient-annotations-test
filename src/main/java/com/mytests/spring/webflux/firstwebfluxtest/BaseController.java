@@ -14,6 +14,7 @@ package com.mytests.spring.webflux.firstwebfluxtest;
 @RestController
 public class BaseController {
 
+    // https://youtrack.jetbrains.com/issue/IDEA-225751
     @RequestMapping("/{boo:${mymappings.uri-regex}}")
     public String testBaseMappingWithRegex(    @PathVariable String boo) {
         return "just test "+boo;
